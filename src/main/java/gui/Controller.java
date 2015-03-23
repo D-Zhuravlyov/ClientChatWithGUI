@@ -1,49 +1,50 @@
 package gui;
 
-import clienServer.ClientSocket;
+import clientServer.ClientSocket;
 import dao.ClientImpl;
-import javafx.beans.property.StringProperty;
+import dao.IClient;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import message.Message;
-import sun.security.x509.IPAddressName;
 
-import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.io.OutputStream;
 import java.net.Socket;
+import java.util.GregorianCalendar;
 
-/**
- * Created by nofuruct on 20.02.15.
- */
+
 public class Controller  {
 
-    private ClientSocket clientSocket= new ClientSocket();
-
+    private  IClient client = new ClientImpl();
 
     public Controller() {
     }
 
-    @FXML private TextArea messageTextArea;
-    @FXML private TextArea dialogueTextArea;
-    @FXML private TextField userName;
+    @FXML private  TextArea messageTextArea;
 
+    @FXML private TextField userName;
     @FXML private TextField userStatus;
+    @FXML private TextArea dialogueTextArea;
+
+    @FXML
+    public void receiveMessage(){
+        for(Message m: client.getMessageBufferList()) {
+            m.setDate(new GregorianCalendar());
+            dialogueTextArea.appendText(m.toString());
+           // client.getMessageBufferList();
+        }
+    }
 
     @FXML
     public void sendMessage(ActionEvent actionEvent) {
         String str = "";
         str += messageTextArea.getText();
         Message message = new Message(str);
-        clientSocket.sendMessage(message);
+        System.out.println(message);
+       // dialogueTextArea.appendText(message.toString()); //checking workability
+        ClientSocket.getInstance().sendMessage(message);
         messageTextArea.clear();
-    }
-
-    @FXML
-    public void receiveMessage(Message message){
-        dialogueTextArea.appendText(message.toString());
+        client.addToMessageBufferList(message);
     }
 
 
@@ -59,9 +60,6 @@ public class Controller  {
         }
     }*/
 
-    public void sendToTextArea(Message message) {
-        receiveMessage(message);
-    }
 }
 
 

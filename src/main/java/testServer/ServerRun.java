@@ -1,7 +1,13 @@
 package testServer;
+import java.io.OutputStream;
+import java.util.LinkedList;
 
-/**
- * Created by nofuruct on 19.03.15.
- */
+
 public class ServerRun {
+
+
+    public static void main(String[] args) {
+        OutStreamsContainer oosContainer = new OutStreamsContainer(new LinkedList<OutputStream>());
+        new Thread(new ServerThread(oosContainer)).start();
+    }
 }

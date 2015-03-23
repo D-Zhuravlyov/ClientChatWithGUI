@@ -4,17 +4,18 @@ import sun.security.x509.IPAddressName;
 
 import java.io.Serializable;
 import java.util.Calendar;
+import java.util.Comparator;
 import java.util.GregorianCalendar;
 
 /**
  * Created by nofuruct on 13.02.15.
  */
-public class Message implements Serializable {
+public class Message implements Serializable, Comparable<Message> {
     private Calendar date = new GregorianCalendar();
-    private IPAddressName ipAddressName;
+    private String ipAddressName;
     private String messageText;
 
-    public Message(IPAddressName ipAddressName, Calendar date, String messageText) {
+    public Message(String ipAddressName, Calendar date, String messageText) {
         this.ipAddressName = ipAddressName;
         this.date = date;
         this.messageText = messageText;
@@ -32,11 +33,11 @@ public class Message implements Serializable {
         this.date = date;
     }
 
-    public IPAddressName getIpAddressName() {
+    public String getIpAddressName() {
         return ipAddressName;
     }
 
-    public void setIpAddressName(IPAddressName ipAddressName) {
+    public void setIpAddressName(String ipAddressName) {
         this.ipAddressName = ipAddressName;
     }
 
@@ -51,7 +52,14 @@ public class Message implements Serializable {
     @Override
     public String toString() {
         return// ", ipAddressName=" + ipAddressName +
-                ", messageText='" + messageText + '\'' +
-                '}';
+                date.getTime() +"| "+ipAddressName+": " + messageText;
+    }
+
+
+
+    @Override
+    public int compareTo(Message o) {
+
+        return 0;
     }
 }
