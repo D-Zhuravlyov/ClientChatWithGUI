@@ -1,4 +1,4 @@
-package clienServer;
+package clientServer;
 
 import dao.ClientImpl;
 import dao.IClient;
@@ -15,6 +15,7 @@ public class ClientInputThread implements Runnable {
     private IClient client= new ClientImpl();
     private InputStream inputStream;
 
+
     public ClientInputThread(InputStream inputStream) {
         this.inputStream = inputStream;
     }
@@ -27,7 +28,7 @@ public class ClientInputThread implements Runnable {
                 Message message = (Message) objectInputStream.readObject();
                 if (message != null) {
                     client.addToSessionList(message);
-                    client.sendToTextArea(message);
+                  //  client.sendToTextArea(message);
                 }
             } catch (IOException e) {
                 e.printStackTrace();
