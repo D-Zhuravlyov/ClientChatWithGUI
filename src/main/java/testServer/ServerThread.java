@@ -1,4 +1,5 @@
 package testServer;
+
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
@@ -12,7 +13,7 @@ import java.net.Socket;
 public class ServerThread implements Runnable {
 
     private OutStreamsContainer outStreamsContainer;
-   // private static final Logger logger = LogManager.getLogger(ServerThread.class);
+    // private static final Logger logger = LogManager.getLogger(ServerThread.class);
 
     public ServerThread(OutStreamsContainer outStreamsContainer) {
         this.outStreamsContainer = outStreamsContainer;
@@ -22,17 +23,17 @@ public class ServerThread implements Runnable {
     public void run() {
         try {
             ServerSocket ss = new ServerSocket(9091);
-      //      logger.debug("start server");
-            while (true){
+            //      logger.debug("start server");
+            while (true) {
                 Socket socket = ss.accept();
                 System.out.println(socket.getInetAddress().getCanonicalHostName());
                 outStreamsContainer.addOutputStream(socket.getOutputStream());
                 //thread for read message
-       //         logger.info("new client : " + socket.getInetAddress().getHostAddress());
+                //         logger.info("new client : " + socket.getInetAddress().getHostAddress());
                 new Thread(new ClientThread(socket.getInputStream(), outStreamsContainer)).start();
             }
         } catch (IOException e) {
-     //       logger.error("IO ex", e);
+            //       logger.error("IO ex", e);
             e.printStackTrace();
         }
 

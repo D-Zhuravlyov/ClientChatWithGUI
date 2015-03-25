@@ -22,11 +22,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
-        <module name="ThreadsChatWithGUI" />
+        <module name="ClientChatWithGUI" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="1.8">
-      <module name="ThreadsChatWithGUI" target="1.8" />
+    <bytecodeTargetLevel>
+      <module name="ClientChatWithGUI" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

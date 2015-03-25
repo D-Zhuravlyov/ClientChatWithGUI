@@ -1,10 +1,8 @@
 package message;
 
-import sun.security.x509.IPAddressName;
 
 import java.io.Serializable;
 import java.util.Calendar;
-import java.util.Comparator;
 import java.util.GregorianCalendar;
 
 /**
@@ -52,9 +50,8 @@ public class Message implements Serializable, Comparable<Message> {
     @Override
     public String toString() {
         return// ", ipAddressName=" + ipAddressName +
-                date.getTime() +"| "+ipAddressName+": " + messageText;
+                date.getTime() + "| " + ipAddressName + ": " + messageText;
     }
-
 
 
     @Override

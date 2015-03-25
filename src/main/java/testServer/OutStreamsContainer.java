@@ -4,6 +4,7 @@ package testServer;
 import message.Message;
 
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.util.List;
@@ -13,28 +14,31 @@ import java.util.List;
  */
 public class OutStreamsContainer {
 
-    private List<OutputStream> clientOutputStreamList;
+    private List<ObjectOutputStream> clientOutputStreamList;
 
-    public OutStreamsContainer(List<OutputStream> clientOutputStreamList) {
+    public OutStreamsContainer(List<ObjectOutputStream> clientOutputStreamList) {
         this.clientOutputStreamList = clientOutputStreamList;
     }
 
-    public List<OutputStream> getClientOutputStreamList() {
+    public List<ObjectOutputStream> getClientOutputStreamList() {
         return clientOutputStreamList;
     }
 
-    public void setClientOutputStreamList(List<OutputStream> clientOutputStreamList) {
+    public void setClientOutputStreamList(List<ObjectOutputStream> clientOutputStreamList) {
         this.clientOutputStreamList = clientOutputStreamList;
     }
 
-    public void addOutputStream(OutputStream outputStream){
-        clientOutputStreamList.add(outputStream);
+    public void addOutputStream(OutputStream outputStream) {
+        try {
+            clientOutputStreamList.add(new ObjectOutputStream(outputStream));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    public void notifyAllClients(Message message){
-        for(OutputStream outputStream : clientOutputStreamList){
+    public void notifyAllClients(Message message) {
+        for (ObjectOutputStream oos : clientOutputStreamList) {
             try {
-                ObjectOutputStream oos = new ObjectOutputStream(outputStream);
                 oos.writeObject(message);
                 oos.flush();
             } catch (IOException e) {

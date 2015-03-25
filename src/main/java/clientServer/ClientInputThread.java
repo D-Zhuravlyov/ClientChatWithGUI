@@ -3,20 +3,11 @@ package clientServer;
 import dao.ClientImpl;
 import dao.IClient;
 import gui.Controller;
-import javafx.application.Application;
-import javafx.fxml.FXML;
-import javafx.scene.control.TextArea;
-import javafx.stage.Stage;
 import message.Message;
-import sun.misc.resources.Messages_es;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
-
-/**
- * Created by nofuruct on 20.02.15.
- */
 
 
 public class ClientInputThread implements Runnable {

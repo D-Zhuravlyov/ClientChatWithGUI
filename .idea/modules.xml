@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/ThreadsChatWithGUI.iml" filepath="$PROJECT_DIR$/ThreadsChatWithGUI.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ClientChatWithGUI.iml" filepath="$PROJECT_DIR$/ClientChatWithGUI.iml" />
     </modules>
   </component>
 </project>

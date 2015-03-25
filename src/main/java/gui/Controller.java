@@ -13,25 +13,29 @@ import java.net.Socket;
 import java.util.GregorianCalendar;
 
 
-public class Controller  {
+public class Controller {
 
-    private  IClient client = new ClientImpl();
+    private IClient client = new ClientImpl();
 
     public Controller() {
     }
 
-    @FXML private  TextArea messageTextArea;
-
-    @FXML private TextField userName;
-    @FXML private TextField userStatus;
-    @FXML private TextArea dialogueTextArea;
+    @FXML
+    private TextArea messageTextArea;
 
     @FXML
-    public void receiveMessage(){
-        for(Message m: client.getMessageBufferList()) {
+    private TextField userName;
+    @FXML
+    private TextField userStatus;
+    @FXML
+    private TextArea dialogueTextArea;
+
+    @FXML
+    public void receiveMessage() {
+        for (Message m : client.getMessageBufferList()) {
             m.setDate(new GregorianCalendar());
             dialogueTextArea.appendText(m.toString());
-           // client.getMessageBufferList();
+            // client.getMessageBufferList();
         }
     }
 
@@ -41,7 +45,7 @@ public class Controller  {
         str += messageTextArea.getText();
         Message message = new Message(str);
         System.out.println(message);
-       // dialogueTextArea.appendText(message.toString()); //checking workability
+        // dialogueTextArea.appendText(message.toString()); //checking workability
         ClientSocket.getInstance().sendMessage(message);
         messageTextArea.clear();
         client.addToMessageBufferList(message);

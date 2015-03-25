@@ -24,6 +24,14 @@
             <artifactId>sisu-inject-bean</artifactId>
             <version>1.4.2</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.zenjava</groupId>
+            <artifactId>javafx-maven-plugin</artifactId>
+            <version>8.1.2</version>
+        </dependency>
+
+
     </dependencies>
 
     <build>

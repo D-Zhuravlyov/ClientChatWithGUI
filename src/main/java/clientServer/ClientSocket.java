@@ -16,16 +16,13 @@ public class ClientSocket {
     private Socket socket;
     private ObjectOutputStream oos;
 
-
-
-
-   public ClientSocket() {
-   }
+    public ClientSocket() {
+    }
 
     public ClientSocket(String ip, int port) {
         try {
             this.socket = new Socket(ip, port);
-            System.out.println("Constructor ClientSocket.class (ip, port); socket =  " +this.socket);
+            System.out.println("Constructor ClientSocket.class (ip, port); socket =  " + this.socket);
             oos = new ObjectOutputStream(socket.getOutputStream());
         } catch (IOException e) {
             e.printStackTrace();
@@ -41,7 +38,7 @@ public class ClientSocket {
     }
 
 
-    public void sendMessage(Message message){
+    public void sendMessage(Message message) {
         try {
             System.out.println("Method sendMessage in ClientSocket.class; socket = " + socket +
                     "message: " + message);
@@ -53,7 +50,7 @@ public class ClientSocket {
     }
 
 
-    public void start() throws SocketException{
+    public void start() throws SocketException {
         Thread clientInputThread = null;
         try {
             clientInputThread = new Thread(new ClientInputThread(socket.getInputStream()));
