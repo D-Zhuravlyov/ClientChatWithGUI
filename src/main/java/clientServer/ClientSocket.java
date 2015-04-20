@@ -1,8 +1,5 @@
 package clientServer;
 
-import dao.IClient;
-import gui.Controller;
-import gui.StartFrame;
 import message.Message;
 
 import java.io.*;

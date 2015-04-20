@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>artcode.home</groupId>
-    <artifactId>ThreadsChatWithGUI</artifactId>
+    <artifactId>ClientChat</artifactId>
     <version>1</version>
 
     <dependencies>

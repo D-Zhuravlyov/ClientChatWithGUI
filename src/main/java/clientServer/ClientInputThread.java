@@ -12,26 +12,21 @@ import java.io.ObjectInputStream;
 
 public class ClientInputThread implements Runnable {
     private IClient client = new ClientImpl();
-    private ObjectInputStream objectInputStream;
-    private ClientSocket socket;
-
+    private InputStream inputStream;
 
     public ClientInputThread() {
     }
 
 
     public ClientInputThread(InputStream inputStream) {
-        try {
-            objectInputStream = new ObjectInputStream(inputStream); // the las point in debug-mod
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        this.inputStream = inputStream;
     }
 
     @Override
     public void run() {
         while (true) {
             try {
+                ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
                 Message message = (Message) objectInputStream.readObject();
                 if (message != null) {
                     client.addToMessageBufferList(message);
@@ -41,7 +36,6 @@ public class ClientInputThread implements Runnable {
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
-
 
         }
     }

@@ -5,17 +5,11 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import clientServer.ClientSocket;
 
-import javax.security.auth.callback.Callback;
-import java.io.IOException;
 
-/**
- * Created by Dmitry on 13.02.15.
- */
 public class StartFrame extends Application {
 
     public static void main(String[] args) {
