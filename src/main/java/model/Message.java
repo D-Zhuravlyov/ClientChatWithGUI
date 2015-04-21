@@ -1,4 +1,4 @@
-package message;
+package model;
 
 
 import java.io.Serializable;
@@ -56,7 +56,12 @@ public class Message implements Serializable, Comparable<Message> {
 
     @Override
     public int compareTo(Message o) {
-
-        return 0;
+        if(this.getDate().after(o.getDate())){
+            return 1;
+        }
+        if(this.getDate().before(o.getDate())){
+            return -1;
+        }
+      return 0;
     }
 }

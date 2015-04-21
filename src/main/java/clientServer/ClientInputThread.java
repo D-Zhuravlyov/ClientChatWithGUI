@@ -1,19 +1,19 @@
 package clientServer;
 
-import dao.ClientImpl;
-import dao.IClient;
+import dao.ClientServiceImpl;
+import dao.IClientService;
 import gui.Controller;
-import message.Message;
+import model.Message;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
+import java.util.GregorianCalendar;
 
 
 public class ClientInputThread implements Runnable {
-    private IClient client = new ClientImpl();
+    private IClientService client = new ClientServiceImpl();
     private InputStream inputStream;
-
     public ClientInputThread() {
     }
 
@@ -28,11 +28,12 @@ public class ClientInputThread implements Runnable {
             try {
                 ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
                 Message message = (Message) objectInputStream.readObject();
-                if (message != null) {
-                    client.addToMessageBufferList(message);
-                    client.getMessageBufferList().forEach(System.out::println);
-                    ControllerHelper.ctrl.receiveMessage();
-                }
+                message.setDate(new GregorianCalendar());
+                client.addToMessageBufferList(message);
+                //for(Message m : client.getMessageListInstance()) {
+
+                    //ControllerHelper.ctrl.receiveMessage();
+                //}
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
