@@ -1,19 +1,32 @@
 package dao;
 
 
+import gui.Controller;
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
+import javafx.collections.ObservableListBase;
 import model.Message;
-
-import java.util.ArrayList;
 
 
 public class ClientServiceImpl implements IClientService {
 
+
+
     public ClientServiceImpl() {
     }
 
-
     public static class MessageListHolder {
-        public static final ArrayList<Message> MESSAGES = new ArrayList<Message>();
+        public static final ObservableList<Message> MESSAGES = new ObservableListBase<Message>() {
+            @Override
+            public Message get(int index) {
+                return MESSAGES.get(index);
+            }
+
+            @Override
+            public int size() {
+                return MESSAGES.size();
+            }
+        };
     }
 
     @Override
@@ -22,13 +35,9 @@ public class ClientServiceImpl implements IClientService {
     }
 
     @Override
-    public synchronized ArrayList<Message> getMessageListInstance() {
+    public synchronized ObservableList<Message> getMessageListInstance() {
     return MessageListHolder.MESSAGES;
     }
-
-
-
-
 
 }
 

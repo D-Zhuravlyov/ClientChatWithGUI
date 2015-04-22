@@ -1,5 +1,6 @@
 package dao;
 
+import javafx.collections.ObservableList;
 import model.Message;
 
 import java.util.ArrayList;
@@ -11,5 +12,5 @@ public interface IClientService {
 
     public void addToMessageBufferList(Message msg);
 
-    public ArrayList<Message> getMessageListInstance();
+    public ObservableList<Message> getMessageListInstance();
 }

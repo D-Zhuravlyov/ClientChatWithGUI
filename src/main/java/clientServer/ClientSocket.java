@@ -1,5 +1,8 @@
 package clientServer;
 
+import dao.IClientService;
+import gui.Controller;
+import gui.ControllerHolder;
 import model.Message;
 
 import java.io.*;
@@ -46,10 +49,11 @@ public class ClientSocket {
     }
 
 
-    public void start() throws SocketException {
+    public void start(IClientService clientService) throws SocketException {
+        ControllerHolder.getController().setClient(clientService);
         Thread clientInputThread = null;
         try {
-            clientInputThread = new Thread(new ClientInputThread(socket.getInputStream()));
+            clientInputThread = new Thread(new ClientInputThread(socket.getInputStream(), clientService));
             clientInputThread.start();
             clientInputThread.setName("clientInputThread");
         } catch (IOException e) {

@@ -12,6 +12,7 @@ public class Message implements Serializable, Comparable<Message> {
     private Calendar date = new GregorianCalendar();
     private String ipAddressName;
     private String messageText;
+    private boolean isNew;
 
     public Message(String ipAddressName, Calendar date, String messageText) {
         this.ipAddressName = ipAddressName;
@@ -21,6 +22,14 @@ public class Message implements Serializable, Comparable<Message> {
 
     public Message(String messageText) {
         this.messageText = messageText;
+    }
+
+    public boolean isNew() {
+        return isNew;
+    }
+
+    public void setNew(boolean isNew) {
+        this.isNew = isNew;
     }
 
     public Calendar getDate() {
